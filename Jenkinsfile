@@ -4,7 +4,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building Docker image...'
-                sh 'docker build -t peninaapp:latest .'
+                sh 'docker build -t dzvinka:latest .'
             }
         }
         stage('Test') {
@@ -19,8 +19,8 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
            
          sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
-                    sh 'docker tag peninaapp:latest $DOCKER_USER/peninaapp:latest'
-                    sh 'docker push $DOCKER_USER/peninaapp:latest'
+                    sh 'docker tag peninaapp:latest $DOCKER_USER/dzvinka:latest'
+                    sh 'docker push $DOCKER_USER/dzvinka:latest'
                 }
             }
         }
